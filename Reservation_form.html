@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Day Grill</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #180101;
+        }
+
+        header {
+            background-color: #0e0d0d;
+            color: #efe8e8;
+            box-shadow: 0 50px 50px #e84d0b;
+            text-align: center;
+            padding: 1em;
+        }
+
+        nav {
+            background-color: #0f0f0f;
+            padding: 0.5em;
+            text-align: center;
+        }
+
+        nav a {
+            color: #e84d0b;
+            text-decoration: none;
+            padding: 1em;
+            margin: 0 1em;
+        }
+
+        section {
+            padding: 2em;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            z-index: 100;
+        }
+    </style>
+    </head>
+<body>
+
+    <header>
+        <h1>Game Day Grill</h1>
+    </header>
+
+    <nav class="navbar">
+        
+        <list><a href="index.html">Home</a><list>
+        <list><a href="Menu.html">Menu</a></list>
+        </list><a href="Contact.html">Contact</a></list>
+        </list><a href="Reservation_form.html">Reservation</a></list>
+        <list><a href="Dine-Out.html">Dine-Out</a></list>
+    </nav>
+
+    
+    <section id="reservation">
+        
+    <footer>
+        <p>&copy; 2023 Game Day Grill</p>
+    </footer>
+
+</body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Day Grill</title>
+    <style>
+       
+        #reservation-form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding-bottom: 50px;
+            color: white;
+        }
+
+        #reservation-form label {
+            display: block;
+            margin-bottom: 8px;
+            color: white;
+        }
+
+        #reservation-form input,
+        #reservation-form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        #reservation-form button {
+            background-color: #f70909;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        #reservation-form button:hover {
+            background-color: #555;
+        }
+        
+        #order-form button:hover {
+            background-color: #555;
+        }
+
+
+
+    </style> 
+
+</head>
+<body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Reservation Form</title>
+    </head>
+    <body>
+    
+        <h2  style="color: white;">Reserve a Table</h2>
+    
+        <section id="reservation">
+            <div id="reservation-form">
+                <form action="process_reservation.php" method="post" onsubmit="sendEmail(); reset(); return false"> <!-- Add the action attribute -->
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+    
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+    
+                    <label for="phone">Phone:</label>
+                    <input type="tel" id="phone" name="phone" required>
+    
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" name="date" required>
+    
+                    <label for="time">Time:</label>
+                    <input type="time" id="time" name="time" required>
+    
+                    <label for="guests">Number of Guests:</label>
+                    <select id="guests" name="guests" required>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+
+                    </form>
+                </select>
+                <button style="color: white;"button type="submit">Submit Reservation</button>
+
+    <script src=" https://smtpjs.com/v3/smtp.js"></script>
+
+        <script>
+            function sendEmail(){
+                Email.send({
+    Host : "smtp.elasticemail.com",
+    Username : "dnnd804@gmail.com",
+    Password : " E91E54D40C29543A2183EBCFD0EA5A2665D4",
+    To : 'elpatroncito804@gmail.com',
+    From : document.getElementById("email").value,
+    Subject : "reservation request",
+    Body : "And this is the body"
+}).then(
+  message => alert(message)
+);
+            }
+            function submitReservation() {
+                const form = document.getElementById('reservationForm');
+                const formData = new FormData(form);
+                const xhr = new XMLHttpRequest();
+    
+                xhr.open('POST', '/process_reservation', true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status === 200) {
+                            alert('Reservation submitted successfully!');
+                            form.reset();
+                        } else {
+                            alert('Failed to submit reservation. Please try again.');
+                        }
+                    }
+                };
+    
+                xhr.send(new URLSearchParams(formData));
+            }
+        </script>
+    
+    </body>
+</html>
